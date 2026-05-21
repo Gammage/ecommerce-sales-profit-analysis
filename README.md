@@ -1,71 +1,29 @@
 # ecommerce-sales-profit-analysis
 
-Ask → what question are we answering?
-Prepare → collect/load data
-Process → clean and format data
-Analyse → find patterns and insights
-Share → present findings
-Act → recommend decisions based on insights
+## Overview
+This project uses a beginner-friendly dataset from Kaggle.
 
-this is a methodology when you dont have set questions to answer with the data
-- Check structure (df.info())
-- Summary stats (df.describe())
+I followed the "EDA" workflow, which consists of the following:
+- Check structure (`df.info()`)
+- Summary stats (`df.describe()`)
 - Find missing values
 - Group and compare data
 - Visualise trends
 
-Ecommerce Sales & Profit Analysis — TODO
+I already had an inclination that it was a fake dataset — all profits were up and the margins for profit/sales were basically 17% across the board.
 
-[ ] Understand the dataset
-    [ ] View first rows
-    [ ] Check column names
-    [ ] Check data types
-    [ ] Identify missing values
-    [ ] Look for duplicate records
+## Key findings
 
-[ ] Clean the data
-    [ ] Convert dates into datetime format
-    [ ] Handle missing values (if any)
-    [ ] Check for unusual values/outliers
+### The data 
+- Around February, monthly sales drop. This is realistic given the post-Christmas period, which aligns with my experience working in insurance marketing and my own trading hobby.
+- Electronics leads in sales and profits across all categories. This is also realistic, in my assumptions.
 
-[ ] Revenue & profit analysis
-    [ ] Which categories generate the highest sales?
-    [ ] Which categories generate the highest profit?
-    [ ] Which categories perform poorly?
+### The tooling
+This was my first project analysing data with Pandas. To make the data presentable, I relied heavily on AI for styling, which introduced me to `FuncFormatter`, enabling me to label the x-axis.
 
-[ ] Product analysis
-    [ ] Top 10 products by sales
-    [ ] Top 10 products by profit
-    [ ] Lowest-performing products
-    [ ] Products making losses
+AI was heavily used in the tooling, specifically Molten.nvim and using a persistent kernel on NixOS. More of that can be read in my [blog article](https://gammagelabs.com/blog/molten-nvim-for-data-analysis/).
 
-[ ] Regional analysis
-    [ ] Which regions generate the highest sales?
-    [ ] Which regions generate the highest profit?
-    [ ] Which regions underperform?
+### Project reflections
+You can read the full blog post here [COMING SOON], but the trade-off I'm currently facing is using Jupyter Lab's GUI over making Molten.nvim work in Neovim. It will take significant time to debug Molten, as my keymaps are conflicting with the visual buffer.
 
-[ ] Customer analysis
-    [ ] Which customer segment generates most sales?
-    [ ] Which customer segment generates most profit?
-    [ ] Which customer segment appears most valuable?
-
-[ ] Time analysis
-    [ ] Sales by month
-    [ ] Profit by month
-    [ ] Identify seasonal trends
-    [ ] Identify strongest and weakest periods
-
-[ ] Discount analysis
-    [ ] Does discounting increase sales?
-    [ ] Does discounting reduce profit?
-    [ ] Which products are heavily discounted?
-
-[ ] Relationships & patterns
-    [ ] Are high-selling products highly profitable?
-    [ ] Are there categories with high revenue but low margins?
-    [ ] Identify interesting trends or anomalies
-
-[ ] Final business recommendations
-    [ ] Three key findings
-    [ ] Three business recommendations
-    [ ] One area for future investigation
+Overall this was a massive jump in using Pandas syntax. My concern is not learning proper function definitions when running individual cells in Python — I don't want to develop bad habits.

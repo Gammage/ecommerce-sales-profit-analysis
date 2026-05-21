@@ -1,0 +1,98 @@
+---
+title: Ecommerce Sales & Profit Analysis
+jupyter: molten
+---
+
+```{python}
+import pandas as pd
+import numpy
+```
+
+```{python}
+df = pd.read_csv("data/ecommerce_sales_data.csv")
+df["Order Date"] = pd.to_datetime(df["Order Date"])
+df.info()
+```
+
+## Categories by Sales
+
+```{python}
+import matplotlib.pyplot as plt
+df.groupby("Category")["Sales"].sum().sort_values().plot(kind="barh", title="Sales by Category")
+plt.xlabel("Total Sales ($ millions)")
+plt.show()
+```
+
+## Top 10 Products by Sales
+
+```{python}
+top = df.groupby("Product Name")["Sales"].sum().sort_values(ascending=True).tail(10)
+top.plot(kind="barh", title="Top 10 Products by Sales")
+plt.xlabel("Total Sales ($)")
+```
+
+## Categories by Profits;
+
+```{python}
+import matplotlib.pyplot as plt
+df.groupby("Category")["Profit"].sum().sort_values().plot(kind="barh", title="Profits by Category")
+plt.xlabel("Total profit ($)")
+plt.show()
+```
+
+## Top 10 Products by Profit
+
+```{python}
+top = df.groupby("Product Name")["Profit"].sum().sort_values(ascending=True).tail(10)
+top.plot(kind="barh", title="Top 10 Products by Profit")
+plt.xlabel("Total Profit ($)")
+```
+
+## Monthly Sales
+
+```{python}
+monthly_sales = df.set_index("Order Date").resample("ME")["Sales"].sum()
+monthly_sales.plot(title="Monthly Sales Over Time")
+plt.ylabel("Sales ($)")
+plt.show()
+```
+
+## Best month for profit
+
+```{python}
+monthly = df.set_index("Order Date").resample("ME")["Profit"].sum()
+print("Best month ($):", monthly.idxmax().month_name())
+print("amount:", monthly.max())
+```
+
+## worst month for profit
+
+```{python}
+monthly = df.set_index("Order Date").resample("ME")["Profit"].sum()
+print("worst month ($):", monthly.idxmin().month_name())
+print("amount:", monthly.min())
+```
+
+## Category margins
+
+```{python}
+df["Margin"] = df["Profit"] / df["Sales"]
+print("\nTop 10 products by margin:")
+print(df.groupby(["Product Name", "Category"])["Margin"].mean().sort_values(ascending=False).head(10))
+```
+
+## Key findings
+- Electronics leads in both sales and profit
+- December is the strongest month for profit
+- February is the weakest month for profit
+- products have around 17% margin - Data is most likely fake (from kaggle datasets)
+
+## recommendations
+- Focus or increase marketing on Electronics
+- Focus on incentives for February (promotions etc)
+- you would most definitely investigate the similiar product margins!
+
+## Note
+this analysis breakdown was from an example dataset on kaggle, very clean data.
+The superficial nature of the product margins would suggest this data was not taken from any real sales data, but it is proof that I can gather insights.
+
