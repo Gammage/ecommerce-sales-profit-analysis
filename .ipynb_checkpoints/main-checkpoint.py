@@ -105,26 +105,8 @@ df.groupby("Category")["Sales"].sum().sort_values().plot(kind="barh", ax=axes[0]
 df.groupby("Category")["Profit"].sum().sort_values().plot(kind="barh", ax=axes[1], title="Profit by Category")
 
 plt.tight_layout()
-plt.savefig("charts_category.png")
-print("Chart saved to charts_category.png")
-
-# %%
-## monthly sales trend
-monthly_sales = df.set_index("Order Date").resample("ME")["Sales"].sum()
-plt.figure()
-plt.plot(monthly_sales.index, monthly_sales.values)
-plt.title("Monthly Sales Over Time")
-plt.ylabel("Sales ($)")
-plt.savefig("charts_monthly.png")
-print("Chart saved to charts_monthly.png")
-
-# %%
-## top 10 products by sales
-top = df.groupby("Product Name")["Sales"].sum().sort_values(ascending=True).tail(10)
-top.plot(kind="barh", title="Top 10 Products by Sales")
-plt.xlabel("Total Sales ($)")
-plt.savefig("charts_top10.png")
-print("Chart saved to charts_top10.png")
+plt.savefig("charts.png")
+print("\nChart saved to charts.png")
 
 # %%
 ## findings & recommendations
